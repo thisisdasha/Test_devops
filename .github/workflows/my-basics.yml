@@ -1,0 +1,59 @@
+name: My-GitHubAction-Basic
+env:
+  APPLICATION_NAME: "MyFlask"
+  PACKAGE_NAME    : "flask-deploy-ver-${{ github.sha}}"
+
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  my_testing:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Print Hello Message in Testing
+      run: echo "Hello World fron Testing job"
+  
+    - name: Execure few commands
+      run: |
+        echo "Hello Message1"
+        echo "Hello Message2"
+        echo "Application name: ${{ env.APPLICATION_NAME}}"
+    
+    - name: List current folder
+      run: ls -la
+    
+    - name: Git clone my repository
+      uses: actions/checkout@v1
+    
+    - name: List current folder
+      run: ls -la
+        
+  my_deploy:
+    runs-on: ubuntu-latest
+    needs: my_testing
+    env:
+      VAR1: "This is Job Level Variable1"
+      VAR2: "This is Job Level Variable2"
+    steps:
+      - name: Print Hello Message in Deploy
+        run: echo "Hello World from Deploy job" 
+      - name: Print env var
+        run: |
+          echo "Var1 = ${{ env.VAR1}}"
+          echo "Var2 = ${{ env.VAR2}}"
+          echo "$LOCAL_VAR"
+        env:
+          LOCAL_VAR: "This is super local environmental variable"
+      
+      - name: Printing Development package
+        run: echo "Deploy package name is ${{env.PACKAGE_NAME}}"
+      - name: Lets test some packages if they are here 1
+        run: aws --version
+      
+      - name: Lets test some packages if they are here 2
+        run: zip
+  
