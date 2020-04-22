@@ -17,6 +17,16 @@ jobs:
     - name: Git clone my repository
       uses: actions/checkout@v1
       
+    - name: Install python
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.8'
+        architecture: 'x64'
+        
+    - name: Install pytest
+#       uses: actions/setup-pytest@v1
+      run: pip install pytest
+      
     - name: View repository files
       run: ls -a
       
