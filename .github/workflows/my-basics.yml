@@ -43,6 +43,9 @@ jobs:
     steps:
     - name: Git clone my repository
       uses: actions/checkout@v1
+      
+    - name: View repository files
+      run: ls -a
     
     - name: Work With Docker
       run:  echo "${{ secrets.DOCKER_PWD }}" | docker login -u "${{ secrets.DOCKER_LOGIN }}" --password-stdin
