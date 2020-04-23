@@ -44,7 +44,8 @@ def add(line, arr):
             return "Invalid name"
     contName = len(newContact.surname)  # surname verification
     for i in range(contName):
-        if (not ((newContact.surname[i] >= 'A' and newContact.surname[i] <= 'Z')
+        if (not ((newContact.surname[i] >= 'A'
+                  and newContact.surname[i] <= 'Z')
                  or (
                 newContact.surname[i] >= 'a' and
                 newContact.surname[i] <= 'z') or (
@@ -72,7 +73,7 @@ def add(line, arr):
         # AutoCorrect +7 to 8
         newContact.phoneNumber = '8' + newContact.phoneNumber[2:]
         line = newContact.name + " " + newContact.surname + " " \
-               + newContact.phoneNumber + " " + newContact.dateOfBirth
+            + newContact.phoneNumber + " " + newContact.dateOfBirth
         return line
 
     if (len(newContact.phoneNumber) != 11
