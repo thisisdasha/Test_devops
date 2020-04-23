@@ -18,5 +18,9 @@ PhoneBook
 -------------------
     $ docker build -t image_name .
     $ docker run -it image_name
+    
+ Status
+ -------------------
+ ![My-GitHubAction-Basic](https://github.com/thisisdasha/Test_devops/workflows/My-GitHubAction-Basic/badge.svg)
 
 Токарева Дарья 18ПИ-1

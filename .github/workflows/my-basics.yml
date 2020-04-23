@@ -1,0 +1,63 @@
+name: My-GitHubAction-Basic
+env:
+  APPLICATION_NAME: "MyFlask"
+  PACKAGE_NAME    : "flask-deploy-ver-${{ github.sha}}"
+
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  my_testing:
+    runs-on: ubuntu-latest
+  
+    steps:
+    - name: Git clone my repository
+      uses: actions/checkout@v1
+      
+    - name: Install python
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.8'
+        architecture: 'x64'
+        
+    - name: Install pytest
+#       uses: actions/setup-pytest@v1
+      run: pip install pytest
+      
+    - name: View repository files
+      run: ls -a
+      
+    - name: Python Style Checker
+      uses: andymckay/pycodestyle-action@0.1.3
+        
+    - name: Run tests
+      run: pytest -v -s tests.py
+        
+  my_deploy:
+    runs-on: ubuntu-latest
+    needs: my_testing
+    env:
+      VAR1: "This is Job Level Variable1"
+      VAR2: "This is Job Level Variable2"
+    steps:
+      - name: Print Hello Message in Deploy
+        run: echo "Hello World from Deploy job" 
+      - name: Print env var
+        run: |
+          echo "Var1 = ${{ env.VAR1}}"
+          echo "Var2 = ${{ env.VAR2}}"
+          echo "$LOCAL_VAR"
+        env:
+          LOCAL_VAR: "This is super local environmental variable"
+      
+      - name: Printing Development package
+        run: echo "Deploy package name is ${{env.PACKAGE_NAME}}"
+      - name: Lets test some packages if they are here 1
+        run: aws --version
+      
+      - name: Lets test some packages if they are here 2
+        run: zip
+  
