@@ -36,28 +36,18 @@ jobs:
     - name: Run tests
       run: pytest -v -s tests.py
         
-  my_deploy:
+  my_build_and_push:
     runs-on: ubuntu-latest
     needs: my_testing
-    env:
-      VAR1: "This is Job Level Variable1"
-      VAR2: "This is Job Level Variable2"
+    
     steps:
-      - name: Print Hello Message in Deploy
-        run: echo "Hello World from Deploy job" 
-      - name: Print env var
-        run: |
-          echo "Var1 = ${{ env.VAR1}}"
-          echo "Var2 = ${{ env.VAR2}}"
-          echo "$LOCAL_VAR"
-        env:
-          LOCAL_VAR: "This is super local environmental variable"
-      
-      - name: Printing Development package
-        run: echo "Deploy package name is ${{env.PACKAGE_NAME}}"
-      - name: Lets test some packages if they are here 1
-        run: aws --version
-      
-      - name: Lets test some packages if they are here 2
-        run: zip
-  
+    - name: Git clone my repository
+      uses: actions/checkout@v1
+    
+    - name: Work With Docker
+      run: echo "${{ secrets.DOCKER_USERNAME}}"
+#       run:  echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+#     - name: Build image
+#       run: docker build -t ${{ secrets.IMAGE }}:latest -f Dockerfile .
+#     - name: Push image to docker.io
+#       run: docker push ${{ secrets.IMAGE }}:latest
