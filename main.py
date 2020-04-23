@@ -1,4 +1,4 @@
-from functions import add, show, find, delete, change, age, viewAge
+import functions
 import time
 import os
 
