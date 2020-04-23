@@ -31,9 +31,14 @@ if os.stat("file.txt").st_size == 0:  # if empty
 if os.stat("file.txt").st_size != 0:
     while (True):
         print("Please choose the number of the desired operation:")
-        print("1 - Add new record to the phonebook\n2 - Introduce some change to the records\n3 - Delete a record")
+        print("1 - Add new record to the phonebook\n"
+              "2 - Introduce some change to the records\n"
+              "3 - Delete a record")
         print(
-            "4 - Search phonebook entries\n5 - Show all phonebook entries\n6 - Find out the age of a person\n7 - View contacts by age\n8 -Exit")
+            "4 - Search phonebook entries\n"
+            "5 - Show all phonebook entries\n"
+            "6 - Find out the age of a person\n"
+            "7 - View contacts by age\n8 -Exit")
         command = input()
         if command == '1':
             line = input("Enter name and surname:\n")
