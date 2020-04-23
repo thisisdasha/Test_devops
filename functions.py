@@ -16,7 +16,9 @@ class Contact(object):
         self.dateOfBirth = tmp[3]
 
     def showContact(self):
-        print(self.name + "\t\t" + self.surname + "\t\t" + self.phoneNumber + "\t\t" + self.dateOfBirth)
+        print(self.name + "\t\t" +
+              self.surname + "\t\t" + self.phoneNumber +
+              "\t\t" + self.dateOfBirth)
 
 
 # phone book features
@@ -37,18 +39,25 @@ def add(line, arr):
     for i in range(contName):
         if (not ((newContact.name[i] >= 'A' and newContact.name[i] <= 'Z') or (
                 newContact.name[i] >= 'a' and newContact.name[i] <= 'z') or (
-                         newContact.name[i] <= '9' and newContact.name[i] >= '0'))):
+                         newContact.name[i] <= '9' and
+                         newContact.name[i] >= '0'))):
             return "Invalid name"
     contName = len(newContact.surname)  # surname verification
     for i in range(contName):
-        if (not ((newContact.surname[i] >= 'A' and newContact.surname[i] <= 'Z') or (
-                newContact.surname[i] >= 'a' and newContact.surname[i] <= 'z') or (
-                         newContact.surname[i] >= '0' and newContact.surname[i] <= '9'))):
+        if (not ((newContact.surname[i] >= 'A' and newContact.surname[i] <= 'Z')
+                 or (
+                newContact.surname[i] >= 'a' and
+                newContact.surname[i] <= 'z') or (
+                         newContact.surname[i] >= '0' and
+                         newContact.surname[i] <= '9'))):
             return "Invalid surname"
-    if (len(newContact.phoneNumber) == 11):  # checking the correctness of the phone number
+
+    # checking the correctness of the phone number
+    if (len(newContact.phoneNumber) == 11):
 
         for i in range(11):
-            if (not (newContact.phoneNumber[i] <= '9' and newContact.phoneNumber[i] >= '0')):
+            if (not (newContact.phoneNumber[i] <= '9' and
+                     newContact.phoneNumber[i] >= '0')):
                 return "Invalid character in phone number"
     if (len(newContact.phoneNumber) == 12):
 
@@ -57,25 +66,31 @@ def add(line, arr):
         if (newContact.phoneNumber[1] != '7'):
             return "Invalid phone number"
         for i in range(2, 12):
-            if (not (newContact.phoneNumber[i] <= '9' and newContact.phoneNumber[i] >= '0')):
+            if (not (newContact.phoneNumber[i] <= '9'
+                     and newContact.phoneNumber[i] >= '0')):
                 return "Invalid phone number"
         # AutoCorrect +7 to 8
         newContact.phoneNumber = '8' + newContact.phoneNumber[2:]
-        line = newContact.name + " " + newContact.surname + " " + newContact.phoneNumber + " " + newContact.dateOfBirth
+        line = newContact.name + " " + newContact.surname + " " \
+               + newContact.phoneNumber + " " + newContact.dateOfBirth
         return line
 
-    if (len(newContact.phoneNumber) != 11 and len(newContact.phoneNumber) != 12):
+    if (len(newContact.phoneNumber) != 11
+            and len(newContact.phoneNumber) != 12):
         return "Invalid phone number"
 
     for i in arr:
         contact = Contact(i)
-        # if the contact with the entered first and last name is already in the directory
-        if (contact.name == newContact.name and contact.surname == newContact.surname):
+        # if the contact with the entered first
+        # and last name is already in the directory
+        if (contact.name == newContact.name and
+                contact.surname == newContact.surname):
             print("Warning\nA contact with the same name already exists!")
             command = 0
             while (command != '2' or command != '1'):
                 print("Please choose the number of the desired operation:")
-                command = input("1 - If you want to make changes\n2 - To return to the main menu\n")
+                command = input("1 - If you want to make changes\n"
+                                "2 - To return to the main menu\n")
                 if command == '1':
                     change()
                     return
@@ -101,7 +116,10 @@ def show(arr):
 
 def find(arr):
     print("Enter Please select your search criteria:")
-    command = input("1 - name\n2 - surname\n3 - name and surname\n4 - date of birth\n")
+    command = input("1 - name\n"
+                    "2 - surname\n"
+                    "3 - name and surname\n"
+                    "4 - date of birth\n")
     if command == '1':
         name = input("Enter name\n")
         name = name.strip()
@@ -153,7 +171,8 @@ def find(arr):
             dbcontact = contact.dateOfBirth[:5]
             if (dateb == dbcontact):
                 contact.showContact()
-    if (command != '1' and command != '2' and command != '3' and command != '4'):
+    if (command != '1' and command != '2'
+            and command != '3' and command != '4'):
         print("Unknown command")
         return
 
@@ -209,7 +228,9 @@ def age(arr):
 
 def viewAge(arr):
     print("Please select a search criteria by age")
-    command = input("1 - younger than ...\n2 - so many years now\n3 - older than...\n")
+    command = input("1 - younger than ...\n"
+                    "2 - so many years now\n"
+                    "3 - older than...\n")
     agefind = input("Enter the age at which we compare\n")
     sizeage = len(agefind)
     for num in range(sizeage):
