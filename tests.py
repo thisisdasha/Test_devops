@@ -35,4 +35,4 @@ def test_invalid_phone_num(tested_string):
         arr = [row.strip() for row in file]
     assert functions.add(tested_string, arr) in \
         ["Invalid phone number",
-        "Invalid character in phone number"]
+         "Invalid character in phone number"]
