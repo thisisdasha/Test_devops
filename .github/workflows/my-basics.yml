@@ -58,4 +58,3 @@ jobs:
     steps:
        - name: run project
          run: echo "Test"
-         #run: docker run -d --rm --name phonebook -p 5000:5000 ${{ secrets.IMAGE }}:latest
