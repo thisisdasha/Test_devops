@@ -58,7 +58,7 @@ jobs:
       run: docker push ${{ secrets.IMAGE }}:latest
   CD:
     needs: CI
-    runs-on: localhost 
+    runs-on: localhost  
     steps:
        - name: Kill old docker
          run: docker kill {{ secrets.IMAGE }}
