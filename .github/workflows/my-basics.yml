@@ -41,6 +41,9 @@ jobs:
     needs: my_testing
     
     steps:
+    
+    - name: Print something
+      run: echo "Test"
     - name: Git clone my repository
       uses: actions/checkout@v1
       
