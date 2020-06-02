@@ -57,7 +57,11 @@ jobs:
     - name: Push image to docker
       run: docker push ${{ secrets.IMAGE }}:latest
   CD:
+    needs: CI
     runs-on: localhost
     steps:
-       - name: run project
-         run: echo "Test"
+       - name: Kill old docker
+         run: docker kill {{ secrets.IMAGE }}
+         continue-on-error: true
+       - name: Run Project
+         run: docker run -d -p 5000:5000 ${{ secrets.IMAGE }}:latest
