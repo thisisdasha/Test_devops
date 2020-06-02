@@ -57,7 +57,7 @@ jobs:
     - name: Push image to docker
       run: docker push ${{ secrets.IMAGE }}:latest
   CD:
-    runs-on: localhost
+    runs-on: dasha-HP-Laptop-15-bw0xx
     steps:
        - name: run project
          run: echo "Test"
