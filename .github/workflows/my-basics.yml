@@ -57,5 +57,5 @@ jobs:
     runs-on: localhost
     steps:
        - name: run project
-         run: echo "${{ secrets.DOCKER_PWD }}" | docker login -u "${{ secrets.DOCKER_LOGIN }}" --password-stdin
+         run: dir
          #run: docker run -d --rm --name phonebook -p 5000:5000 ${{ secrets.IMAGE }}:latest
