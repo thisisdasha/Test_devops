@@ -61,7 +61,9 @@ jobs:
          run: docker rm /phonebook
          continue-on-error: true
        - name: Run Project
-         run: docker run -d -p 5000:5000 --name phonebook ${{ secrets.IMAGE }}:latest
+         run: |
+          docker pull thisisdasha/phonebook:latest
+          docker run -d  --name phonebook ${{ secrets.IMAGE }}:latest
        - name: Test
          run: (echo "5" && echo "8") | docker run -i --rm thisisdasha/phonebook > artifacts.txt
        - name: Artifacts
