@@ -54,11 +54,13 @@ jobs:
     needs: CI
     runs-on: localhost  
     steps:
+       - name: Stop docker
+         run: docker stop /phonebook
        - name: Kill old docker
-         run: docker kill {{ secrets.IMAGE }}
+         run: docker rm /phonebook
          continue-on-error: true
        - name: Run Project
-         run: docker run -d -p 5000:5000 ${{ secrets.IMAGE }}:latest
+         run: docker run -d -p 5000:5000 --name phonebook ${{ secrets.IMAGE }}:latest
        - name: Test
          run: (echo "5" && echo "8") | docker run -i --rm thisisdasha/phonebook > artifacts.txt
        - name: Artifacts
