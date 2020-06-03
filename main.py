@@ -30,7 +30,7 @@ if os.stat("file.txt").st_size == 0:  # if empty
 # file is not empty
 if os.stat("file.txt").st_size != 0:
     while (True):
-        print("Please choose the number of the desired operation:")
+        print("Please choose the number of the desired operation:)")
         print("1 - Add new record\n"
               "2 - Introduce some change to the records\n"
               "3 - Delete")
