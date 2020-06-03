@@ -33,7 +33,7 @@ if os.stat("file.txt").st_size != 0:
         print("Please choose the number of the desired operation:")
         print("1 - Add new record\n"
               "2 - Introduce some change to the records\n"
-              "3 - Delete a record")
+              "3 - Delete")
         print(
             "4 - Search phonebook entries\n"
             "5 - Show all phonebook entries\n"
