@@ -1,14 +1,8 @@
 name: My-GitHubAction-Basic
-env:
-  APPLICATION_NAME: "MyFlask"
-  PACKAGE_NAME    : "flask-deploy-ver-${{ github.sha}}"
-
 
 on:
   push:
-    branches:
-      - master
-
+    
 jobs:
   my_testing:
     runs-on: ubuntu-latest
